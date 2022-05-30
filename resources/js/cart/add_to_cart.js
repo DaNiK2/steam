@@ -26,19 +26,24 @@ function addGameToCart(id) {
     return false;
   }
 
-  const cart = JSON.parse(localStorage.getItem('steamCart')) || [];
+    var base_price = document.getElementById(id);
+    var price = base_price.dataset.price;
+    console.log(price);
+
+    let cart = JSON.parse(localStorage.getItem('steamCart')) || [];
 
   // ищем товар в корзине
   let newProduct = cart.find(product => product.id === id);
 
-  // если продукт уже есть в корзине, то увеличиваем его количесвтво
-  // иначе добавляем новый продукт
-  if (newProduct) {
-    newProduct.count += 1;
-  } else {
-    newProduct = { id, count: 1 };
-    cart.push(newProduct);
-  }
+    // если продукт уже есть в корзине, то увеличиваем его количесвтво
+    // иначе добавляем новый продукт
+    if (newProduct) {
+        newProduct.count = newProduct.count + 1;
+        newProduct.finalPrice = price * newProduct.count
+    }else {
+        newProduct = { 'id': id, 'count': 1, 'finalPrice' : price};
+        cart.push(newProduct);
+    }
 
   localStorage.setItem('steamCart', JSON.stringify(cart));
 

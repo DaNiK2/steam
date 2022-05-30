@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => console.error(error));
   }
-  
-  const cart = JSON.parse(localStorage.getItem('steamCart'));
 
   document.querySelector('#order').addEventListener('click', function (e) {
     get_session_id();
@@ -38,14 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const path = 'basket/getOrder';
 
-    const cartToController = localStorage.getItem('finalPrice');
-  /*console.log(cartToController);
-
-    console.log(cart); */
+    const cartToController = JSON.stringify(JSON.parse(localStorage.getItem('steamCart')));
     
-    let dataBasket = {
-      cart
-    }
+    let dataBasket = cartToController;
 
     console.log(dataBasket)
 
