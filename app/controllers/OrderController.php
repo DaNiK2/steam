@@ -8,15 +8,16 @@ use App\Model\OrderModel;
 class OrderController {
     use DataBuilder;
 
-    public $orderPrice;
+    public $game_id = 0;
     public $price = 0;
+    public $count = 0;
    
     public function getOrder()
     {
-        var_dump($_POST);
-/*         foreach ($_POST as $key => $value) {
-           $this->price = (int)$key;        
-        } */   
+        $test = ['id' => 1, 'count' => 1, 'finalPrice' => 1];
+        $this->price = $test['finalPrice'];
+        $this->game_id = $test['id'];
+        $this->count = $test['count'];
 
         //return $this->сomparisonPriceBalance();
 
@@ -35,20 +36,18 @@ class OrderController {
         
     }*/
 
-   /* public function getInformationForOrder()
+    public function store()
     {
-        $explodeKeys = explode(',', $this->orderKeys);
+        $data = [['final_price' => $this->game_id,
+            'count' => $this->price,
+            'order_date' => date('Y-m-d H:i:s', time()),
+            'user_id' => $_SESSION['sid'],
+            'game_id' => $this->game_id]
+        ];
 
-        $result = [];
-
-        foreach ($explodeKeys as $key => $item) {
-            $game = new GameModel();
-            $game = $game->find($item);
-            $result[$key] = $game;
-    }    
-
-    return $result;
-
+        $args = $this->dataBuilder($data);
+        
+        $order = new OrderModel();
+        $order->store($args);
     }
-*/
 }
