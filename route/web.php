@@ -55,4 +55,9 @@ $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'gene
 /*=== ЛОГГИРОВАНИЕ ОШИБОК ===*/
 $router->add('logs', ['controller' => 'LoggerController', 'action' => 'index']);
 
+/*=== РАБОТА С ЗАКАЗАМИ ===*/
+$router->add('order', ['controller' => 'OrderController', 'action' => 'successOrder']);
+$router->add('basket/getOrder', ['controller' => 'OrderController', 'action' => 'getOrder']);
+
+
 $router->dispatch($_SERVER['QUERY_STRING']);
