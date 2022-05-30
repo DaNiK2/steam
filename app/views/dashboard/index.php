@@ -43,8 +43,8 @@
             <?php foreach ($games as $game) : ?>
                 <div class=" is-one-part game">
                     <div class="game-cover">
-                        <div class="buy" id="<?=$game->id?>" data-price=<?=$game->base_price?>>
                         <div class="buu">
+                        <div class="buy" id="<?=$game->id?>" data-game_id="<?=$game->id?>" data-price="<?=$game->base_price?>">
                             <span class="icon">
                                 <ion-icon name="cart-outline"></ion-icon>
                             </span>
