@@ -52,6 +52,9 @@ $router->add('getProducts', ['controller' => 'BasketController', 'action' => 'ge
 /*=== РАБОТА С ПСЕВДОСЫЛКАМИ ===*/
 $router->add('symlinks', ['controller' => 'SymlinkController', 'action' => 'generate']);
 
+/*=== РАБОТА С ЗАКАЗАМИ ===*/
+$router->add('basket/getOrder', ['controller' => 'OrderController', 'action' => 'getOrder']);
+
 /*=== ЛОГГИРОВАНИЕ ОШИБОК ===*/
 $router->add('logs', ['controller' => 'LoggerController', 'action' => 'index']);
 

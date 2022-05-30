@@ -20,6 +20,7 @@ class OrderController {
         $this->count = $test['count'];
 
         //return $this->сomparisonPriceBalance();
+        return $this->store();
 
         //echo json_encode(array_shift($result));
         //echo json_encode($result);
@@ -38,11 +39,12 @@ class OrderController {
 
     public function store()
     {
-        $data = [['final_price' => $this->game_id,
-            'count' => $this->price,
+        $data = [
+            'final_price' => (int) $this->game_id,
+            'count' => (int) $this->price,
             'order_date' => date('Y-m-d H:i:s', time()),
-            'user_id' => $_SESSION['sid'],
-            'game_id' => $this->game_id]
+            'user_id' => (int) $_SESSION['sid'],
+            'game_id' => (int) $this->game_id
         ];
 
         $args = $this->dataBuilder($data);
