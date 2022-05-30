@@ -1,31 +1,30 @@
-import { notification } from '../notification/swal'
-import { get_session } from '../db/get_session'
-import { productInCart } from "./brief_cart";
+import { notification } from '../notification/swal';
+import { get_session } from '../db/get_session';
+import { productInCart } from './brief_cart';
 
 let status;
 
-document.querySelectorAll(".buy").forEach(btn =>
-    btn.addEventListener("click", () => addGameToCart(btn.id))
-);
+for (const btn of document.querySelectorAll('.buy'))
+  btn.addEventListener('click', () => addGameToCart(btn.id));
 
 function get_session_id() {
-    let send_session = get_session('get_auth');
-    send_session()
-        .then((response) => {
-            if (!response.length) {
-                notification("Вы не авторизованы", "error");
-                status = 0;
-            }
-        })
-        .catch((err) => console.error(err));
+  const send_session = get_session('get_auth');
+  send_session()
+    .then(response => {
+      if (response.length === 0) {
+        notification('Вы не авторизованы', 'error');
+        status = 0;
+      }
+    })
+    .catch(error => console.error(error));
 }
 
 function addGameToCart(id) {
-    get_session_id();
+  get_session_id();
 
-    if (status != undefined) {
-        return false;
-    }
+  if (status != undefined) {
+    return false;
+  }
 
     var base_price = document.getElementById(id);
     var price = base_price.dataset.price;
@@ -33,8 +32,8 @@ function addGameToCart(id) {
 
     let cart = JSON.parse(localStorage.getItem('steamCart')) || [];
 
-    // ищем товар в корзине
-    let newProduct = cart.find(product => product.id === id);
+  // ищем товар в корзине
+  let newProduct = cart.find(product => product.id === id);
 
     // если продукт уже есть в корзине, то увеличиваем его количесвтво
     // иначе добавляем новый продукт
@@ -46,9 +45,9 @@ function addGameToCart(id) {
         cart.push(newProduct);
     }
 
-    localStorage.setItem('steamCart', JSON.stringify(cart));
+  localStorage.setItem('steamCart', JSON.stringify(cart));
 
-    productInCart();
+  productInCart();
 
-    notification("Товар под номером " + id + " в корзине");
+  notification(`Товар под номером ${id} в корзине`);
 }
