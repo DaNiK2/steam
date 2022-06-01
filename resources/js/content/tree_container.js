@@ -1,17 +1,17 @@
 export function tree_container(response, dashboard) {
-    const result = JSON.parse(response);
-    // удаляем все дочерние элементы с играми
-    while (dashboard.firstChild) {
-        dashboard.firstChild.remove();
-    }
+  const result = JSON.parse(response);
+  // удаляем все дочерние элементы с играми
+  while (dashboard.firstChild) {
+    dashboard.firstChild.remove();
+  }
 
-    for (const element of result) {
-        const tree = document.createElement('div');
-        tree.classList.add('column');
-        tree.classList.add('is-one-quarter');
-        tree.classList.add('game');
+  for (const element of result) {
+    const tree = document.createElement('div');
+    tree.classList.add('column');
+    tree.classList.add('is-one-quarter');
+    tree.classList.add('game');
 
-        tree.innerHTML += `
+    tree.innerHTML += `
                     <div class="game-cover">
                         <div class="buy" id="${element.id}">
                             <span class="icon">
@@ -34,8 +34,8 @@ export function tree_container(response, dashboard) {
                             ${element.base_price} &#x20bd
                             <span class="discount">-${element.tax}%</span>
                         </div>
-                    </div>`
+                    </div>`;
 
-        dashboard.append(tree);
-    }
+    dashboard.append(tree);
+  }
 }

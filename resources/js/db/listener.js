@@ -5,14 +5,16 @@ import { notification } from '../notification/swal';
 import { redirect } from './redirect';
 import { clearForm } from './clear_form';
 import { identity_route } from '../cart/identity_route';
-import { addGameToCart } from '../cart/add_to_cart'
+import { addGameToCart } from '../cart/add_to_cart';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ЗА ЭТО МЫ БУДЕМ ГОРЕТЬ В АДУ!
-    if(window.location.pathname == 'game') {
-        let btnToCartGamePage = document.getElementsByClassName('buy')[0];
-        btnToCartGamePage.addEventListener('click', () => addGameToCart(btnToCartGamePage.id));
-    }
+  // ЗА ЭТО МЫ БУДЕМ ГОРЕТЬ В АДУ!
+  if (window.location.pathname == 'game') {
+    const btnToCartGamePage = document.querySelectorAll('.buy')[0];
+    btnToCartGamePage.addEventListener('click', () =>
+      addGameToCart(btnToCartGamePage.id),
+    );
+  }
 
   // Создаем массив объектов, в котором соотносятся страницы с роутерами
   const type = list();

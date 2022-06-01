@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /*
   const expenses = {
     header: 'application/x-www-form-urlencoded',
-  };*/
+  }; */
 
   let status;
 
@@ -33,19 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const path = 'basket/getOrder';
 
     const cartToController = JSON.stringify(localStorage.getItem('steamCart'));
-    
-    let dataBasket = cartToController;
+
+    const dataBasket = cartToController;
 
     const send = sendData(dataBasket, path, basket.header);
 
     send(dataBasket, path, basket.header)
       .then(response => {
-        var test = response;
+        const test = response;
         if (test == 1) {
           redirect('basket/success');
           localStorage.clear('steamCart');
-      } 
-        else {notification(`На счёте не достаточно средств для совершения покупки`, 'error');}
+        } else {
+          notification(
+            `На счёте не достаточно средств для совершения покупки`,
+            'error',
+          );
+        }
       })
       .catch(error => {
         console.log(error);
