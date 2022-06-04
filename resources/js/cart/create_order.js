@@ -40,8 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     send(dataBasket, path, basket.header)
       .then(response => {
-        const test = response;
-        if (test == 1) {
+        const status = response;
+        console.log(status);
+        /*if (status == 1) {
           redirect('basket/success');
           localStorage.clear('steamCart');
         } else {
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `На счёте не достаточно средств для совершения покупки`,
             'error',
           );
-        }
+        }*/
       })
       .catch(error => {
         console.log(error);
